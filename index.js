@@ -2,10 +2,14 @@ let menu = document.querySelector(".navbar ul");
 let menuLis = Array.from(document.querySelectorAll(".navbar ul li"));
 let bulletsButton = document.querySelector(".bullets");
 let bulletsSpans = document.querySelectorAll(".bullets span");
-let homePage = document.getElementById("#home");
-let navButtons = document.querySelector(".home .navbuttons");
+let homePage = document.getElementById("home");
+let navButtons = document.querySelector(".navbuttons");
 let rightButton = document.querySelector(".right");
 let leftButton = document.querySelector(".left");
+let testimonialBox = document.getElementById("test-box");
+let testimonial = document.querySelector(".testimonial");
+let dateNow = document.querySelector(".datenow");
+let footerUlis = document.querySelectorAll(".footer-ul li");
 menuLis.forEach((li)=>{
     li.addEventListener("click",(e)=>{
     removeActive();
@@ -27,12 +31,27 @@ bulletsButton.addEventListener("click",()=>{
         })
         bulletsButton.classList.remove("closeMenu");
     }else{
-    homePage.style.cssText = "height:calc(168vh - 20px)";
-    navButtons.style.cssText = "bottom: -33%";
+    homePage.style.cssText = "height:calc(170vh - 20px)";
+    navButtons.style.cssText = "bottom: -35%";
     menu.style.display = "flex";
     bulletsSpans.forEach((span)=>{
     span.classList.add("close");
     })
     bulletsButton.classList.add("closeMenu");
     }
+})
+window.onscroll=()=>{
+    if(window.scrollY >= testimonial.offsetTop - 600){
+        testimonialBox.style.right = "0";
+    }
+}
+let date = new Date();
+dateNow.innerHTML=date.getFullYear();
+footerUlis.forEach((li)=>{
+    li.addEventListener("click",(e)=>{
+        footerUlis.forEach((li)=>{
+            li.classList.remove("active");
+            e.currentTarget.classList.add("active");
+        })
+    })
 })
