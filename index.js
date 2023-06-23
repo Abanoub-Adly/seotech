@@ -7,12 +7,16 @@ let homePage = document.getElementById(".home");
 let navButtons = document.querySelector(".navbuttons");
 let rightButton = document.querySelector(".right");
 let leftButton = document.querySelector(".left");
-let testimonialBox = document.getElementById("t.est-box");
+let testimonialBox = document.getElementById("test-box");
 let testimonial = document.querySelector(".testimonial");
 let dateNow = document.querySelector(".datenow");
 let footerUlis = document.querySelectorAll(".footer-ul a");
 menuLis.forEach((li)=>{
     li.addEventListener("click",(e)=>{
+        if(li.getAttribute("data-current") == window.location.pathname.split("/").pop()){
+            removeActive();
+            li.getAttribute("data-current").classList.add("active");
+        }
     removeActive();
     e.currentTarget.classList.add("active");
     })
@@ -25,7 +29,7 @@ function removeActive(){
 bulletsButton.addEventListener("click",()=>{
     if(homePage){
         if(bulletsButton.classList.contains("closeMenu")){
-            homePage.style.cssText = "height:calc(130vh - 20px)";
+            homePage.style.cssText = "height:calc(170vh - 20px)";
             navButtons.style.cssText = "bottom: 0";
             menu.style.display = "none";
             bulletsSpans.forEach((span)=>{
@@ -83,3 +87,4 @@ function removeActiveFooter(){
         li.classList.remove("active");
     })
 }
+console.log(window.location.pathname.split("/").pop())
